@@ -1,0 +1,16 @@
+<template>
+   <!-- <div class="user">
+      <h1>User {{$route.params}}</h1>
+      <router-view></router-view>
+    </div>-->
+</template>
+
+<script>
+    export default {
+
+    }
+</script>
+
+<style scoped>
+
+</style>
