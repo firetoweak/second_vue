@@ -22,10 +22,9 @@
             <router-link to="baihuo">百货</router-link>
           </el-menu-item>
           <div id="login" style="float: right">
-            <router-link to="login" class="link">
               <el-dropdown>
-                <el-button type="success">
-                 菜单<i class="el-icon-arrow-down el-icon--right"></i>
+                <el-button type="primary">
+                 <i class="el-icon-menu"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>
@@ -42,13 +41,10 @@
                   </el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-            </router-link>
           </div>
         </el-menu>
       </el-header>
       <el-main>
-        <p class="linkStyle">
-        </p>
         <router-view></router-view>
       </el-main>
     </el-container>

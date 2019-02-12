@@ -20,8 +20,7 @@
           <span style="color:blue ">商品名：凡撒帝电磁炉</span>
           <span style="color: red">售价：458元</span>
           <div class="bottom clearfix">
-            <el-input-number v-model="num1" @change="handleChange" :min="1" :max="10" label="描述文字"></el-input-number>
-            <el-button type="primary" class="button">添加购物车</el-button>
+            <el-button type="text" class="button">添加购物车</el-button>
           </div>
         </div>
       </el-card>
@@ -56,7 +55,9 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+
+  }
 </script>
 
 <style scoped>

@@ -45,7 +45,7 @@
       <el-card :body-style="{ padding: '0px' }" shadow="never">
         <img class="image" src="../assets/images/鞋.png">
         <div style="padding: 14px;">
-          <span style="color:blue ">商品名：超V运动鞋</span>
+          <span style="color:blue ">商品名：超V运动鞋</span><br>
           <span style="color: red">售价：99元</span>
           <div class="bottom clearfix">
             <el-button type="text" class="button">添加购物车</el-button>
