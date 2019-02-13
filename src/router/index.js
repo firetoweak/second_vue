@@ -7,9 +7,8 @@ import book from "../components/book";
 import dianqi from "../components/dianqi";
 import home from "../components/home";
 import shopping from "../components/shopping";
-import Vuex from 'Vuex'
+
 Vue.use(Router);
-Vue.use(Vuex);
 
 const routes =[
   {

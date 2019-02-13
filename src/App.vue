@@ -21,6 +21,9 @@
           <el-menu-item index="4">
             <router-link to="baihuo">百货</router-link>
           </el-menu-item>
+          <el-menu-item index="5">
+            <router-link to="shopping">购物车</router-link>
+          </el-menu-item>
           <div id="login" style="float: right">
               <el-dropdown>
                 <el-button type="primary">
@@ -59,11 +62,7 @@
 
       };
     },
-    methods: {
-      handleClick() {
-        alert('button click');
-      }
-    }
+    methods: {}
   }
 </script>
 
