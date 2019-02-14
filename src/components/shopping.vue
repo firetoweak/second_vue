@@ -4,52 +4,34 @@
     <el-row>
       <el-table
         ref="multipleTable"
-        :data="tableData"
+        :data="cartProducts"
         style="width: 100%"
         @selection-change="handleSelectionChange">
-        <el-table-column
-          type="selection"
-          width="100px">
+        <el-table-column type="selection" width="100px">
         </el-table-column>
-        <el-table-column
-          label="图片"
-          width="280">
+        <el-table-column label="图片" width="280" prop="pro_img">
           <template slot-scope="scope">
-            <span>{{ scope.row.pro_img }}</span>
+            <img :src="scope.row.pro_img" min-width="100" height="100">
           </template>
         </el-table-column>
-        <el-table-column
-          label="名称">
-          <template slot-scope="scope">
-            <span>{{ scope.row.pro_name }}</span>
+        <el-table-column label="名称" width="200" prop="pro_name" class="id">
+        </el-table-column>
+        <el-table-column label="单价（元）" width="150">
+          <template slot-scope="scope"><p>￥：<span style="color: red">{{scope.row.pro_price}}</span></p>
           </template>
         </el-table-column>
-        <el-table-column
-          label="单价（元）">
-          <template slot-scope="scope">
-            <p>￥：<span style="color: red">{{scope.row.pro_price}}</span></p>
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="数量">
+        <el-table-column label="数量" width="200">
           <template slot-scope="scope">
             <el-input-number size="small" v-model="scope.row.num1" :min="1"></el-input-number>
           </template>
         </el-table-column>
-        <el-table-column
-          label="金额（元）"
-          width="250px">
-          <template slot-scope="scope">
-            ￥：<span style="color: red">{{scope.row.pro_price*scope.row.num1}}</span>
+        <el-table-column label="金额（元）">
+          <template slot-scope="scope">￥：<span style="color: red">{{scope.row.pro_price*scope.row.num1}}</span>
           </template>
         </el-table-column>
-        <el-table-column
-          label="操作">
+        <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="primary" plain
-              @click.native.prevent="handleDelete(scope.$index, tableData)">删除
+            <el-button size="mini" type="primary" plain icon="el-icon-delete" @click="dialogVisibleTrue(scope.row)">删除
             </el-button>
           </template>
         </el-table-column>
@@ -64,21 +46,22 @@
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
+
   export default {
     data() {
       return {
         multipleSelection: [],
-        num1:0
+        num1: 0
       }
     },
     methods: {
-      handleDelete(index, row) {
-        row.splice(index, 1);
+      dialogVisibleTrue(val) {
+        this.delProduct(val);
       },
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
-      ...mapActions(['addToCart'])
+      ...mapActions(['delProduct'])
     },
     computed: {
       getTotal: function () {
@@ -93,7 +76,7 @@
       msg: function () {
         return this.multipleSelection.length;
       },
-      ...mapGetters(['tableData'])
+      ...mapGetters(['cartProducts'])
     }
   }
 </script>

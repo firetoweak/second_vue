@@ -25,25 +25,23 @@
             <router-link to="shopping">购物车</router-link>
           </el-menu-item>
           <div id="login" style="float: right">
-              <el-dropdown>
-                <el-button type="primary">
-                 <i class="el-icon-menu"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>
-                    <router-link to="login"><span style="color: #333333">登陆</span></router-link>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <router-link to="register"><span style="color: #333333">注册</span></router-link>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                    <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>
-                  </el-dropdown-item>
-                  <el-dropdown-item>
-                   <router-link to="message"><span style="color: #333333">个人信息</span></router-link>
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+            <el-dropdown>
+              <el-button type="primary" icon="el-icon-menu">菜单</el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>
+                  <router-link to="login"><span style="color: #333333">登陆</span></router-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link to="register"><span style="color: #333333">注册</span></router-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>
+                </el-dropdown-item>
+                <el-dropdown-item>
+                  <router-link to="message"><span style="color: #333333">个人信息</span></router-link>
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </div>
         </el-menu>
       </el-header>
