@@ -8,7 +8,7 @@
     </el-row>
     <el-row type="flex" justify="center">
       <el-form-item label="用户名" prop="name">
-        <el-input placeholder="手机号或邮箱" v-model="ruleForm2.name" autocomplete="off" clearable></el-input>
+        <el-input placeholder="手机号或邮箱" v-model="ruleForm2.name" clearable></el-input>
       </el-form-item>
     </el-row>
     <el-row type="flex" justify="center">
@@ -25,7 +25,7 @@
     </el-row>
     <el-row type="flex" justify="center">
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+        <el-button type="primary" @click="submitForm('ruleForm2'),register">提交</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-row>
@@ -72,9 +72,6 @@
           name: ''
         },
         rules2: {
-          name: [
-            {validator: validateName, trigger: 'blur'}
-          ],
           pass: [
             {validator: validatePass, trigger: 'blur'}
           ],
@@ -88,15 +85,29 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            alert('注册成功!');
           } else {
-            console.log('error submit!!');
+            console.log('注册失败!!');
             return false;
           }
-        });
+        })
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      register(){
+        this.$axios
+          .post('/blogRegister',{
+            username:this.ruleForm2.name,
+            password:this.ruleForm2.pass,
+          })
+          .then(successResponse => {
+            // this.responseResult = JSON.stringify(successResponse.data)
+            if (successResponse.data.code === 200) {
+              this.$router.replace({path: '/index'})
+            }
+          })
+          .catch(failResponse => {})
       }
     }
   }

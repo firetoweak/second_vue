@@ -29,10 +29,10 @@
               <el-button type="primary" icon="el-icon-menu">菜单</el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>
-                  <router-link to="login"><span style="color: #333333">登陆</span></router-link>
+                  <router-link to="blogLogin"><span style="color: #333333">登陆</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="register"><span style="color: #333333">注册</span></router-link>
+                  <router-link to="blogRegister"><span style="color: #333333">注册</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
                   <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>

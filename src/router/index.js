@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '../components/login'
-import register from "../components/register";
+import Login from '../components/blogLogin'
+import register from "../components/blogRegister";
 import baihuo from "../components/baihuo";
 import book from "../components/book";
 import dianqi from "../components/dianqi";
@@ -20,11 +20,11 @@ const routes =[
     component:home,
   },
   {
-    path:'/login',
+    path:'/blogLogin',
     component:Login,
   },
   {
-    path:'/register',
+    path:'/blogRegister',
     component:register,
   },
   {
