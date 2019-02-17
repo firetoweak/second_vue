@@ -20,11 +20,11 @@ const routes =[
     component:home,
   },
   {
-    path:'/blogLogin',
+    path:'/login',
     component:Login,
   },
   {
-    path:'/blogRegister',
+    path:'/register',
     component:register,
   },
   {

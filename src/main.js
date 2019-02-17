@@ -6,17 +6,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router/index'
 import store from "./store";
-// import axios from 'axios'
-// import Qs from 'qs'
 
 // 引用axios，并设置基础URL为后端服务api地址
-var axios = require('axios');
-axios.default.baseURL ='https://localhost:8843/api';
+// var axios = require('axios');
+// axios.default.baseURL ='http://localhost:8843/api';
 
 Vue.use(ElementUI);
 // 将API方法绑定到全局
-Vue.prototype.$axios = axios;
-// Vue.prototype.qs = Qs;
+// Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

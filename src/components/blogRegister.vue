@@ -25,7 +25,7 @@
     </el-row>
     <el-row type="flex" justify="center">
       <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm2'),register">提交</el-button>
+        <el-button type="primary" @click="register">提交</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-row>
@@ -34,18 +34,9 @@
 </template>
 
 <script>
+  import utils from '../utils/utils'
   export default {
     data() {
-      var validateName = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入用户名'));
-        } else {
-          if (this.ruleForm2.name !== '') {
-            this.$refs.ruleForm2.validateField('name');
-          }
-          callback();
-        }
-      };
       var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
@@ -82,32 +73,26 @@
       };
     },
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('注册成功!');
-          } else {
-            console.log('注册失败!!');
-            return false;
-          }
-        })
-      },
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
       register(){
-        this.$axios
-          .post('/blogRegister',{
-            username:this.ruleForm2.name,
-            password:this.ruleForm2.pass,
-          })
-          .then(successResponse => {
-            // this.responseResult = JSON.stringify(successResponse.data)
-            if (successResponse.data.code === 200) {
-              this.$router.replace({path: '/index'})
-            }
-          })
-          .catch(failResponse => {})
+        console.info(this.ruleForm2.name+this.ruleForm2.pass);
+        let success=(reponse)=>{
+          if(reponse.data.code===200){
+            alert("注册成功！")
+          }
+        };
+        let postData={
+          username:this.ruleForm2.name,
+          password:this.ruleForm2.pass
+        };
+        utils.axiosMethod({
+          method: "POST",
+          url:"/api/register/",
+          data:postData,
+          callback:success
+        })
       }
     }
   }

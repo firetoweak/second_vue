@@ -11,13 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     //路由接口代理配置
-    proxyTable: {
-      '/api': {
-        target: 'https://localhost:8443',
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:8443/',
+        secure:false,
         changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
       }
     },
 

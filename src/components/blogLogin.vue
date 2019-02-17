@@ -22,7 +22,7 @@
     <el-row type="flex" justify="center">
       <el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
-        <router-link to="blogRegister">
+        <router-link to="register">
           <el-button @click="regSubmit">注册</el-button>
         </router-link>
       </el-form-item>
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+  import utils from '../utils/utils'
   export default {
     data() {
       return {
@@ -42,18 +43,18 @@
     },
     methods: {
       login() {
-        this.$axios
-          .post('/login',{
-            username:this.loginForm.username,
-            password:this.loginForm.password
-          })
-          .then(successResponse=>{
-            // this.responseResult = JSON.stringify(successResponse.data)
-            if (successResponse.data.code === 200){
-              this.$route.replace({path:'/index'})
-            }
-          })
-          .catch(failResponse =>{})
+        // console.info(this.loginForm.username+this.loginForm.password);
+        let success=(reponse)=>{
+          if(reponse.data.code===200){
+            this.$router.push({path:'/home'})
+          }
+        };
+        utils.axiosMethod({
+          method: "POST",
+          url:"/api/login/",
+          data:this.loginForm,
+          callback:success
+        })
       }
     }
   }
