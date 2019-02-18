@@ -29,7 +29,8 @@
               <el-button type="primary" icon="el-icon-menu">菜单</el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>
-                  <router-link to="login"><span style="color: #333333">登陆</span></router-link>
+                  <router-link to="login"><span style="color: #333333" @click="changeLoginState">{{loginState}}</span>
+                  </router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
                   <router-link to="register"><span style="color: #333333">注册</span></router-link>
@@ -38,7 +39,7 @@
                   <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="message"><span style="color: #333333">个人信息</span></router-link>
+                  <router-link to="userMessage"><span style="color: #333333">个人信息</span></router-link>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -46,7 +47,9 @@
         </el-menu>
       </el-header>
       <el-main>
-        <router-view></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </el-main>
     </el-container>
   </div>
@@ -57,10 +60,20 @@
     data() {
       return {
         activeIndex2: '1',
-
+        loginState: '登陆'
       };
     },
-    methods: {}
+    methods: {
+      changeLoginState() {
+        this.$store.commit('$_removeStorage');
+        this.changeLoginState = '登陆'
+      }
+    },
+    mounted() {
+      if (200 === this.$store.getters('getStorage').code) {
+        this.loginState = '注销';
+      }
+    }
   }
 </script>
 

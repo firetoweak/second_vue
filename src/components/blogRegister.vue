@@ -8,7 +8,7 @@
     </el-row>
     <el-row type="flex" justify="center">
       <el-form-item label="用户名" prop="name">
-        <el-input placeholder="手机号或邮箱" v-model="ruleForm2.name" clearable></el-input>
+        <el-input placeholder="不含特殊字符" v-model="ruleForm2.name" clearable></el-input>
       </el-form-item>
     </el-row>
     <el-row type="flex" justify="center">
@@ -26,7 +26,7 @@
     <el-row type="flex" justify="center">
       <el-form-item>
         <el-button type="primary" @click="register">提交</el-button>
-        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+        <el-button type="primary" plain @click="resetForm('ruleForm2')">重置</el-button>
       </el-form-item>
     </el-row>
   </el-form>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import utils from '../utils/utils'
+  import utils from '../axios/utils'
   export default {
     data() {
       var validatePass = (rule, value, callback) => {
@@ -81,6 +81,10 @@
         let success=(reponse)=>{
           if(reponse.data.code===200){
             alert("注册成功！")
+            this.$router.push({path:'/login'});
+          }else {
+            alert("注册失败，用户名已存在");
+            this.$router.push({path:'/register'})
           }
         };
         let postData={

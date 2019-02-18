@@ -7,45 +7,50 @@ import book from "../components/book";
 import dianqi from "../components/dianqi";
 import home from "../components/home";
 import shopping from "../components/shopping";
+import userMessage from "../components/userMessage";
 
 Vue.use(Router);
 
-const routes =[
+const routes = [
   {
-    path:'/',
-    redirect:'/home',
+    path: '/',
+    redirect: '/home',
   },
   {
-    path:'/home',
-    component:home,
+    path: '/home',
+    component: home,
   },
   {
-    path:'/login',
-    component:Login,
+    path: '/login',
+    component: Login,
   },
   {
-    path:'/register',
-    component:register,
+    path: '/register',
+    component: register,
   },
   {
-    path:'/baihuo',
-    component:baihuo,
+    path: '/baihuo',
+    component: baihuo,
   },
   {
-    path:'/book',
-    component:book,
+    path: '/book',
+    component: book,
   },
   {
-    path:'/dianqi',
-    component:dianqi,
+    path: '/dianqi',
+    component: dianqi,
   },
   {
-  path:'/shopping',
-    component:shopping,
+    path: '/shopping',
+    component: shopping,
+  },
+  {
+    path: '/userMessage',
+    component: userMessage
   }
 ];
 
 export default new Router({
-  mode:'history',
+  mode: 'history',
   routes,
 })
