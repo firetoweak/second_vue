@@ -8,6 +8,7 @@ import dianqi from "../components/dianqi";
 import home from "../components/home";
 import shopping from "../components/shopping";
 import userMessage from "../components/userMessage";
+import messageChange from "../components/messageChange";
 
 Vue.use(Router);
 
@@ -47,6 +48,10 @@ const routes = [
   {
     path: '/userMessage',
     component: userMessage
+  },
+  {
+    path:'/messageChange',
+    component:messageChange
   }
 ];
 

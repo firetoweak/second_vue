@@ -29,17 +29,18 @@
               <el-button type="primary" icon="el-icon-menu">菜单</el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>
-                  <router-link to="login"><span style="color: #333333" @click="changeLoginState">{{loginState}}</span>
+                  <router-link to="login"><span style="color: #333333" @click="changeLoginState">{{getCode}}</span>
                   </router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="register"><span style="color: #333333">注册</span></router-link>
+                  <router-link to="register"><span style="color: #333333">注册新账户</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
                   <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="userMessage"><span style="color: #333333">个人信息</span></router-link>
+                  <router-link to="userMessage"><span style="color: #333333" :disabled="messageKey">个人信息</span>
+                  </router-link>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -56,24 +57,35 @@
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
   export default {
     data() {
       return {
         activeIndex2: '1',
-        loginState: '登陆'
+        loginState: '',
+        getCode: ''
       };
     },
     methods: {
       changeLoginState() {
         this.$store.commit('$_removeStorage');
-        this.changeLoginState = '登陆'
-      }
+      },
+      ...mapGetters(['getCode'])
     },
-    mounted() {
-      if (200 === this.$store.getters('getStorage').code) {
-        this.loginState = '注销';
+    computed: {},
+    /*mounted() {
+      let loginCode = this.$store.getters.getCode;
+      if (null != loginCode) {
+        console.info(loginCode.code);
+        if (200 === loginCode.code) {
+          this.loginState = '注销';
+          this.messageKey = true
+        }
+      } else {
+        this.loginState = '登陆';
+        this.messageKey = false
       }
-    }
+    }*/
   }
 </script>
 

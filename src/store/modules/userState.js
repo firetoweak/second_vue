@@ -1,11 +1,22 @@
 const state = {
-  userMessage: null
-}
+  userMessage: null,
+  userCode: null
+};
 
 const getters = {
-  getStorage: state => {
+  getCode: state => {
+    if (!state.userCode) {
+      state.userCode = JSON.parse(localStorage.getItem('dataLogin')).code;
+      if (200 === state.userCode) {
+        return '注销'
+      }
+    } else {
+      return '登陆'
+    }
+  },
+  getMessage: state => {
     if (!state.userMessage) {
-      state.userMessage = JSON.parse(localStorage.getItem(key))
+      state.userMessage = JSON.parse(localStorage.getItem('dataLogin')).data;
     }
     return state.userMessage
   }
@@ -14,11 +25,12 @@ const getters = {
 const mutations = {
   $_setStorage(state, value) {
     state.userMessage = value;
-    localStorage.setItem(key, JSON.stringify(value))
+    localStorage.setItem('dataLogin', JSON.stringify(value))
   },
   $_removeStorage(state) {
     state.userMessage = null;
-    localStorage.removeItem(key)
+    state.userCode = null;
+    localStorage.clear()
   }
 };
 
