@@ -20,22 +20,30 @@
     data() {
       return {
         userData: [{
-          username: '',
-          name: '',
-          sex: '',
-          email: '',
-          address: ''
+          username: '1',
+          name: '1',
+          sex: '1',
+          email: '1',
+          address: '1'
         }]
       }
     },
-   computed:{
-      ...mapGetters(['getMessage'])
-    },
     watch:{
       getMessage:function (li) {
-        let vm = this;
-        this.userData = li
+        let _this = this;
+        _this.userData = li;
+        // console.info('对信息进行渲染',this.userData)
       }
+    },
+   computed:{
+     ...mapGetters(['getMessage']),
+     getMessage:function () {
+       let _this = this;
+       _this.userData = _this.$store.getters.getMessage;
+       // console.info('对信息进行第一次渲染',this.userData)
+     }
+    },
+    methods:{
     }
   }
 </script>

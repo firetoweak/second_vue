@@ -1,9 +1,9 @@
 <template>
   <el-form ref="form" :model="loginForm" label-width="80px">
     <el-row type="flex" justify="center">
-        <el-form-item label-width="60px">
-          <h1><span><font size="3">登录</font></span></h1>
-        </el-form-item>
+      <el-form-item label-width="60px">
+        <h1><span><font size="3">登录</font></span></h1>
+      </el-form-item>
     </el-row>
     <el-form label-position="right" label-width="80px">
       <el-row type="flex" justify="center">
@@ -41,19 +41,19 @@
       }
     },
     methods: {
-
-
       login() {
+        /*
+        //模拟测试数据
         let data = {id:'2',username:'111',name:'200',sex:'2',email:'111',address:'2323'};
         let code = 200;
         console.info(code);
         this.$store.commit('$_setMessage',data);
-        this.$store.commit('$_setCode',code);
+        this.$store.commit('$_setCode',code);*/
         let success = (reponse) => {
           if (reponse.data.code === 200) {
-          /*  console.info(reponse.data.data);
-            this.$store.commit('$_setMessage',reponse.data.data);
-            this.$store.commit('$_setCode',reponse.data.code);*/
+            console.info(reponse.data.data);
+            this.$store.commit('$_setMessage', reponse.data.data);
+            this.$store.commit('$_setCode', reponse.data.code);
             this.$router.push({path: '/home'})
           } else {
             alert("用户名或密码不正确!");

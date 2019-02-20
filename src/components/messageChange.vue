@@ -65,15 +65,20 @@
           data: this.dataChange,
           callback: success
         })
-      }
+      },
+
     },
     computed: {
       ...mapGetters(['getMessage']),
+      getMessage: function () {
+        let vm = this;
+        vm.dataChange = vm.$store.getters.getMessage;
+      }
     },
     watch: {
       getMessage: function (li) {
         let vm = this;
-        this.dataChange = li
+        vm.dataChange = li
       }
     }
   }
