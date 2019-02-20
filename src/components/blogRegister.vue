@@ -77,7 +77,6 @@
         this.$refs[formName].resetFields();
       },
       register(){
-        console.info(this.ruleForm2.name+this.ruleForm2.pass);
         let success=(reponse)=>{
           if(reponse.data.code===200){
             alert("注册成功！")

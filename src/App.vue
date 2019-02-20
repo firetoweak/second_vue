@@ -29,17 +29,18 @@
               <el-button type="primary" icon="el-icon-menu">菜单</el-button>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>
-                  <router-link to="login"><span style="color: #333333" @click="changeLoginState">{{getCode}}</span>
+                  <router-link to="login">
+                    <span style="color: #333333" @click="$_removeStorage">
+                      <span v-if='loginState'>注销</span>
+                      <span v-else>登陆</span>
+                    </span>
                   </router-link>
-                </el-dropdown-item>
-                <el-dropdown-item>
-                  <router-link to="register"><span style="color: #333333">注册新账户</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
                   <router-link to="shopping"><span style="color: #333333">购物车</span></router-link>
                 </el-dropdown-item>
                 <el-dropdown-item>
-                  <router-link to="userMessage"><span style="color: #333333" :disabled="messageKey">个人信息</span>
+                  <router-link to="userMessage"><span style="color: #333333">个人信息</span>
                   </router-link>
                 </el-dropdown-item>
               </el-dropdown-menu>
@@ -57,35 +58,27 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex'
+  import {mapGetters,mapMutations} from 'vuex'
+
   export default {
     data() {
       return {
         activeIndex2: '1',
-        loginState: '',
-        getCode: ''
+        loginState:''
       };
     },
     methods: {
-      changeLoginState() {
-        this.$store.commit('$_removeStorage');
-      },
-      ...mapGetters(['getCode'])
+      ...mapMutations(['$_removeStorage'])
     },
-    computed: {},
-    /*mounted() {
-      let loginCode = this.$store.getters.getCode;
-      if (null != loginCode) {
-        console.info(loginCode.code);
-        if (200 === loginCode.code) {
-          this.loginState = '注销';
-          this.messageKey = true
-        }
-      } else {
-        this.loginState = '登陆';
-        this.messageKey = false
+    computed: {
+      ...mapGetters(['getCode']),
+    },
+    watch:{
+      getCode:function (li) {
+        let vm = this;
+        this.loginState = li
       }
-    }*/
+    }
   }
 </script>
 

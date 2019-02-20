@@ -21,7 +21,7 @@
       <el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
         <router-link to="register">
-          <el-button type="primary" plain>注册</el-button>
+          <el-button type="primary" plain>注册新账户</el-button>
         </router-link>
       </el-form-item>
     </el-row>
@@ -41,11 +41,19 @@
       }
     },
     methods: {
+
+
       login() {
-        // console.info(this.loginForm.username+this.loginForm.password);
+        let data = {id:'2',username:'111',name:'200',sex:'2',email:'111',address:'2323'};
+        let code = 200;
+        console.info(code);
+        this.$store.commit('$_setMessage',data);
+        this.$store.commit('$_setCode',code);
         let success = (reponse) => {
           if (reponse.data.code === 200) {
-            this.$store.commit('$_setStorage',reponse.data);
+          /*  console.info(reponse.data.data);
+            this.$store.commit('$_setMessage',reponse.data.data);
+            this.$store.commit('$_setCode',reponse.data.code);*/
             this.$router.push({path: '/home'})
           } else {
             alert("用户名或密码不正确!");
