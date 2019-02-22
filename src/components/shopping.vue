@@ -39,13 +39,14 @@
     </el-row>
     <p style="float: right">
       <span style="color: red">{{msg}}</span>件商品总计：<span style="color: red">￥{{getTotal.totalPrice}}元</span>
-      <el-button type="warning">去结算</el-button>
+      <el-button type="warning" @click="numToMysql">去结算</el-button>
     </p>
   </div>
 </template>
 
 <script>
   import {mapGetters, mapActions} from 'vuex'
+  import utils from '../axios/utils'
 
   export default {
     data() {
@@ -61,11 +62,26 @@
       handleSelectionChange(val) {
         this.multipleSelection = val;
       },
+      numToMysql() {
+        let tableNum = this.multipleSelection;
+        console.info(tableNum);
+        let success = (response) => {
+          if (200 === response.data.code) {
+            alert("正在生成订单！")
+          }
+        };
+        utils.axiosMethod({
+          method: "POST",
+          url: "/api/shopping/",
+          data: tableNum,
+          callback: success
+        })
+      },
       ...mapActions(['delProduct'])
     },
     computed: {
       getTotal: function () {
-        var tableNum = this.multipleSelection, totalPrice = 0;
+        let tableNum = this.multipleSelection, totalPrice = 0;
         for (let i = 0, len = this.multipleSelection.length; i < len; i++) {
           totalPrice += tableNum[i].num1 * tableNum[i].pro_price;
         }

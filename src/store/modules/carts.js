@@ -29,7 +29,7 @@ const getters = {
   cartProducts: state => {
     return state.added.map(({id, num1}) => {
       let product = state.dianqi_list.find(item => item.id == id);
-      console.info('product', product);
+      // console.info('product', product);
       if (null != product) {
         return {
           ...product,
@@ -37,7 +37,7 @@ const getters = {
         }
       }
       product = state.book_list.find(item => item.id == id);
-      console.info('product', product);
+      // console.info('product', product);
       if (null != product) {
         return {
           ...product,
@@ -45,7 +45,7 @@ const getters = {
         }
       }
       product = state.baihuo_list.find(item => item.id == id);
-      console.info('product', product);
+      // console.info('product', product);
       return {
         ...product,
         num1
@@ -78,7 +78,7 @@ const mutations = {
       record.num1++
     }
     // console.info('record',record)
-    console.info('added', state.added)
+    // console.info('added', state.added)
   },
   DELETE(state, product) {
     state.added.forEach((item, index) => {

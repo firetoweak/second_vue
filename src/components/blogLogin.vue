@@ -51,7 +51,6 @@
         this.$store.commit('$_setCode',code);*/
         let success = (reponse) => {
           if (reponse.data.code === 200) {
-            console.info(reponse.data.data);
             this.$store.commit('$_setMessage', reponse.data.data);
             this.$store.commit('$_setCode', reponse.data.code);
             this.$router.push({path: '/home'})
