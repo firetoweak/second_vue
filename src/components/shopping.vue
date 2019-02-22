@@ -64,7 +64,14 @@
       },
       numToMysql() {
         let tableNum = this.multipleSelection;
-        console.info(tableNum);
+        let data=[];
+        for (let i=0;i<tableNum.length;i++){
+          let obj={};
+          obj.count = tableNum[i].num1;
+          obj.name = tableNum[i].pro_name;
+          data[i] = obj;
+        }
+        console.info(data);
         let success = (response) => {
           if (200 === response.data.code) {
             alert("正在生成订单！")
@@ -73,7 +80,7 @@
         utils.axiosMethod({
           method: "POST",
           url: "/api/shopping/",
-          data: tableNum,
+          data: data,
           callback: success
         })
       },
