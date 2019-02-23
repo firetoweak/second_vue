@@ -8,9 +8,7 @@
       <tr>邮箱  {{userData.email}}</tr>
       <tr>地址  {{userData.address}}</tr>
     </table>
-    <router-link to="messageChange">
-      <el-button type="primary" plain size="mini" style="float: right">修改信息</el-button>
-    </router-link>
+      <el-button type="primary" plain size="mini" @click="isLogin" style="float: right">修改信息</el-button>
   </div>
 </template>
 
@@ -44,6 +42,14 @@
      }
     },
     methods:{
+      isLogin(){
+        if(userData.username === '未登录'){
+          alert("请先登录后修改信息");
+          this.$router.push({path:'/login'});
+        }else {
+          this.$router.push({path:'/messageChange'})
+        }
+      }
     }
   }
 </script>

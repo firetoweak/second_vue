@@ -42,8 +42,7 @@
     },
     methods: {
       login() {
-        /*
-        //模拟测试数据
+       /* //模拟测试数据
         let data = {id:'2',username:'111',name:'200',sex:'2',email:'111',address:'2323'};
         let code = 200;
         console.info(code);
@@ -54,9 +53,8 @@
             this.$store.commit('$_setMessage', reponse.data.data);
             this.$store.commit('$_setCode', reponse.data.code);
             this.$router.push({path: '/home'})
-          } else {
-            alert("用户名或密码不正确!");
-            this.$router.push({path: '/login'})
+          } else{
+            alert(reponse.data.message);
           }
         };
         utils.axiosMethod({

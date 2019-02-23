@@ -82,8 +82,7 @@
             alert("注册成功！")
             this.$router.push({path:'/login'});
           }else {
-            alert("注册失败，用户名已存在");
-            this.$router.push({path:'/register'})
+            alert(reponse.data.message);
           }
         };
         let postData={

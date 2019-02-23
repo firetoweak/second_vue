@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>我的购物车</p>
+    <p>{{username}}的购物车</p>
     <el-row>
       <el-table
         ref="multipleTable"
@@ -52,7 +52,8 @@
     data() {
       return {
         multipleSelection: [],
-        num1: 0
+        num1: 0,
+        username: '1'
       }
     },
     methods: {
@@ -63,26 +64,33 @@
         this.multipleSelection = val;
       },
       numToMysql() {
-        let tableNum = this.multipleSelection;
-        let data=[];
-        for (let i=0;i<tableNum.length;i++){
-          let obj={};
-          obj.count = tableNum[i].num1;
-          obj.name = tableNum[i].pro_name;
-          data[i] = obj;
-        }
-        console.info(data);
-        let success = (response) => {
-          if (200 === response.data.code) {
-            alert("正在生成订单！")
+        if (this.username === '未登录') {
+          alert("请先登陆后购买！！！");
+          this.$router.push({path: '/login'});
+        } else {
+          let tableNum = this.multipleSelection;
+          let data = [];
+          for (let i = 0; i < tableNum.length; i++) {
+            let obj = {};
+            obj.count = tableNum[i].num1;
+            obj.name = tableNum[i].pro_name;
+            data[i] = obj;
           }
-        };
-        utils.axiosMethod({
-          method: "POST",
-          url: "/api/shopping/",
-          data: data,
-          callback: success
-        })
+          console.info(data);
+          let success = (response) => {
+            if (200 === response.data.code) {
+              alert("正在生成订单！")
+            } else if (500 === response.data.code) {
+              alert(response.data.message)
+            }
+          };
+          utils.axiosMethod({
+            method: "POST",
+            url: "/api/shopping/",
+            data: data,
+            callback: success
+          })
+        }
       },
       ...mapActions(['delProduct'])
     },
@@ -95,11 +103,25 @@
         return {
           totalNum: tableNum.length, totalPrice: totalPrice
         }
-      },
+      }
+      ,
       msg: function () {
         return this.multipleSelection.length;
       },
-      ...mapGetters(['cartProducts'])
+      ...mapGetters(['cartProducts']),
+      ...mapGetters(['getMessage']),
+      getMessage: function () {
+        let _this = this;
+        _this.username = _this.$store.getters.getMessage.username;
+        // console.info('对信息进行第一次渲染',this.userData)
+      }
+    },
+    watch: {
+      getMessage: function (li) {
+        let _this = this;
+        _this.username = li.username;
+        // console.info('对信息进行渲染',this.userData)
+      }
     }
   }
 </script>
