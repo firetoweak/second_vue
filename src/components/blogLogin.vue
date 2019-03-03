@@ -20,8 +20,11 @@
     <el-row type="flex" justify="center">
       <el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
+        <router-link to="changePass">
+          <el-button type="primary">修改密码</el-button>
+        </router-link>
         <router-link to="register">
-          <el-button type="primary" plain>注册新账户</el-button>
+          <span type="primary" plain>注册新账户</span>
         </router-link>
       </el-form-item>
     </el-row>
@@ -42,8 +45,8 @@
     },
     methods: {
       login() {
-       /* //模拟测试数据
-        let data = {id:'2',username:'111',name:'200',sex:'2',email:'111',address:'2323'};
+        //模拟测试数据
+        /*let data = {id:'2',username:'111',name:'200',sex:'2',email:'111',address:'2323'};
         let code = 200;
         console.info(code);
         this.$store.commit('$_setMessage',data);
@@ -53,7 +56,7 @@
             this.$store.commit('$_setMessage', reponse.data.data);
             this.$store.commit('$_setCode', reponse.data.code);
             this.$router.push({path: '/home'})
-          } else{
+          } else {
             alert(reponse.data.message);
           }
         };

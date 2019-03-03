@@ -9,6 +9,7 @@ import home from "../components/home";
 import shopping from "../components/shopping";
 import userMessage from "../components/userMessage";
 import messageChange from "../components/messageChange";
+import changePass from "../components/changePass";
 
 Vue.use(Router);
 
@@ -52,10 +53,13 @@ const routes = [
   {
     path:'/messageChange',
     component:messageChange
+  },
+  {
+    path:'/changePass',
+    component:changePass,
   }
 ];
 
 export default new Router({
-  mode: 'history',
   routes,
 })

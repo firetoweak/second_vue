@@ -43,7 +43,7 @@
     },
     methods:{
       isLogin(){
-        if(userData.username === '未登录'){
+        if(this.userData.username === '未登录'){
           alert("请先登录后修改信息");
           this.$router.push({path:'/login'});
         }else {
